@@ -15,6 +15,6 @@ public class Application {
 
     @GetMapping("/")
     public String home() {
-        return "CI/CD Pipeline is successfully running!";
+        return "CI/CD Pipeline is successfully running Test!";
     }
 }
