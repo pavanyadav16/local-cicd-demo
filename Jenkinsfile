@@ -31,12 +31,18 @@ pipeline {
 
         stage('Deploy Locally') {
             steps {
-                // Kills any existing Java processes running on port 8080 to free it up
-                // Then starts the new built jar in the background
                 script {
+                    // This is the magic line! It tells Jenkins NOT to kill our background app
+                    env.JENKINS_NODE_COOKIE = 'dontKillMe'
+                    
                     bat '''
+                    @echo off
+                    echo Cleaning up port 8080...
                     FOR /F "tokens=5" %%a IN ('netstat -aon ^| find ":8080" ^| find "LISTENING"') DO taskkill /F /PID %%a || echo Port 8080 is free.
-                    start "JavaApp" java -jar target/cicd-demo-1.0.0.jar
+                    
+                    echo Starting Application...
+                    :: We use cmd /c to run it and redirect output to app.log for troubleshooting
+                    start "JavaApp" cmd /c "java -jar target/cicd-demo-1.0.0.jar > app.log 2>&1"
                     '''
                 }
             }
