@@ -36,11 +36,11 @@ Phase 3: Install & Configure Jenkins Locally
 Download the jenkins.war file from the Jenkins Generic Java package page.
 https://www.jenkins.io/download/
 Open a new terminal window, navigate to where you downloaded the file, and start Jenkins:
-java -jar jenkins.war --httpPort=8080
-Check port: 8080 should be free.
+java -jar jenkins.war --httpPort=9090
+Check port: 9090 should be free.
 
 Keep this terminal window open. Jenkins is now running locally.
-Open your browser and navigate to http://localhost:8080
+Open your browser and navigate to http://localhost:9090
 
 You will be prompted for an Administrator Password. Look at your Jenkins terminal window; you will see a 32-character alphanumeric password printed there. Copy and paste it into the browser.
 Click Install suggested plugins and wait for them to download.
@@ -59,7 +59,7 @@ git push
 
 Phase 5: Execute the CI/CD Pipeline
 Now we connect Jenkins to your GitHub repository to execute the instructions in the Jenkinsfile.
-Go to your Jenkins dashboard (http://localhost:8080).
+Go to your Jenkins dashboard (http://localhost:9090).
 Click New Item on the left menu.
 Enter a name for your job (e.g., Java-Web-Pipeline), select Pipeline, and click OK.
 Scroll down to the Pipeline section.
@@ -71,11 +71,11 @@ Click Save.
 
 On the project page, click Build Now on the left menu.
 
-You should see the pipeline execute through the Checkout, Build, Test, and Deploy stages. Once it turns green, open a new browser tab and navigate to http://localhost:8080. You will see your application running: "CI/CD Pipeline is successfully running!"
+You should see the pipeline execute through the Checkout, Build, Test, and Deploy stages. Once it turns green, open a new browser tab and navigate to http://localhost:9090. You will see your application running: "CI/CD Pipeline is successfully running!"
 
 Step 2: Configure Jenkins
 
-Open your Jenkins Dashboard (http://localhost:8080).
+Open your Jenkins Dashboard (http://localhost:9090).
 
 On the left menu, click Manage Jenkins.
 
@@ -104,3 +104,5 @@ In the MAVEN_HOME field, paste the full path to your Maven folder (e.g., C:\mave
 Click Save at the bottom of the page.
 
 Go back to your Java-Web-Pipeline job and click Build Now. The pipeline will now successfully find the tools and proceed to the Build stage!
+
+Run The app: http://localhost:8080/
